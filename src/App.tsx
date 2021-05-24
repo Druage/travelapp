@@ -25,7 +25,8 @@ function App() {
                 </Route>
 
                 <Route exact path="/map">
-                    <div>MAP IM THE MAP</div>
+                    <div id="map-pane">
+                    </div>
                 </Route>
 
             </Switch>

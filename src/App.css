@@ -18,3 +18,8 @@
     width: 300px;
     font-size: 2rem;
 }
+
+#map-pane {
+    height: 100vh;
+    width: 100vw;
+}
