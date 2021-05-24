@@ -25,8 +25,14 @@ function App() {
                 </Route>
 
                 <Route exact path="/map">
-                    <div id="map-pane">
+
+                    <div className="map-container">
+                        <div className="left-pane">
+                            <input className="map-search" type="text" placeholder="Search..."/>
+                        </div>
+                        <div id="map-pane"></div>
                     </div>
+
                 </Route>
 
             </Switch>
