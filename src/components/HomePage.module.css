@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    height: 100vh;
+    width: 100vw;
+}
+
+.addTripButton {
+    height: 100px;
+    width: 300px;
+    font-size: 2rem;
+}
