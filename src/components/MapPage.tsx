@@ -6,6 +6,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 export function MapPage() {
 
     let map: any;
+    let geocoder: MapboxGeocoder
     const accessToken = 'pk.eyJ1IjoibGVlbGF6YXJlY2t5IiwiYSI6ImNrbzI1eGhrNDA4Mmsyb29lYTgyZjR0bHkifQ.EQiqikkIYHnvWHKGzPSNCQ';
 
     useEffect(() => {
@@ -24,15 +25,18 @@ export function MapPage() {
 
         map.addControl(new NavigationControl(), 'top-right');
 
-        map.addControl(new MapboxGeocoder({
+        geocoder = new MapboxGeocoder({
             accessToken: accessToken,
             mapboxgl: map
-        }))
+        });
+
+        document.getElementById('geocoder')!.appendChild(geocoder.onAdd(map))
+
     });
 
     return <div className={styles.mapContainer}>
         <div className={styles.leftPane}>
-            <input className={styles.mapSearch} type="text" placeholder="Search..."/>
+            <div id="geocoder"/>
         </div>
 
         <div className={styles.rightPane}>
