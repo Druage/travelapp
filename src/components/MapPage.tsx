@@ -1,29 +1,33 @@
 import React, {useEffect} from "react";
 import styles from "./MapPage.module.css"
-
-const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-
-mapboxgl.accessToken = 'pk.eyJ1IjoibGVlbGF6YXJlY2t5IiwiYSI6ImNrbzI1eGhrNDA4Mmsyb29lYTgyZjR0bHkifQ.EQiqikkIYHnvWHKGzPSNCQ';
+import {GeolocateControl, Map, NavigationControl} from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 export function MapPage() {
 
     let map: any;
+    const accessToken = 'pk.eyJ1IjoibGVlbGF6YXJlY2t5IiwiYSI6ImNrbzI1eGhrNDA4Mmsyb29lYTgyZjR0bHkifQ.EQiqikkIYHnvWHKGzPSNCQ';
 
     useEffect(() => {
-        map = new mapboxgl.Map({
+        map = new Map({
             container: 'map-pane',
             style: 'mapbox://styles/mapbox/outdoors-v11',
-            displayControlsDefault: false,
+            accessToken: accessToken
         });
 
-        map.addControl(new mapboxgl.GeolocateControl({
+        map.addControl(new GeolocateControl({
             positionOptions: {
                 enableHighAccuracy: true
             },
             trackUserLocation: true
         }));
 
-        map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+        map.addControl(new NavigationControl(), 'top-right');
+
+        map.addControl(new MapboxGeocoder({
+            accessToken: accessToken,
+            mapboxgl: map
+        }))
     });
 
     return <div className={styles.mapContainer}>
