@@ -12,7 +12,8 @@ export function MapPage() {
     useEffect(() => {
         map = new mapboxgl.Map({
             container: 'map-pane',
-            style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/mapbox/outdoors-v11',
+            displayControlsDefault: false,
         });
 
         map.addControl(new mapboxgl.GeolocateControl({
@@ -21,12 +22,20 @@ export function MapPage() {
             },
             trackUserLocation: true
         }));
+
+        map.addControl(new mapboxgl.NavigationControl(), 'top-right');
     });
 
     return <div className={styles.mapContainer}>
         <div className={styles.leftPane}>
             <input className={styles.mapSearch} type="text" placeholder="Search..."/>
         </div>
-        <div id="map-pane" className={styles.mapPane}></div>
+
+        <div className={styles.rightPane}>
+            <div id="map-pane" className={styles.mapPane}/>
+            <button className={styles.addStopButton}>Add A Stop +</button>
+        </div>
+
+
     </div>
 }
