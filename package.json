@@ -6,6 +6,8 @@
     "@craco/craco": "^6.1.2",
     "@expo-google-fonts/inter": "^0.1.0",
     "@fontsource/inter": "^4.4.2",
+    "@headlessui/react": "^1.2.0",
+    "@heroicons/react": "^1.0.1",
     "@mapbox/mapbox-gl-geocoder": "^4.7.1",
     "@mapbox/react-geocoder": "^2.5.0",
     "@testing-library/jest-dom": "^5.12.0",

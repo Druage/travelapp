@@ -1,6 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {Fragment, useEffect, useRef, useState} from "react";
 import styles from "./MapPage.module.css"
 import mapbox from "mapbox-gl";
+import {Dashboard} from "./Dashboard";
+import SearchIcon from "@heroicons/react/outline/SearchIcon";
 
 export function MapPage() {
 
@@ -42,14 +44,49 @@ export function MapPage() {
 
     }, []);
 
-    return <div className={styles.mapContainer}>
-        <div className={styles.leftPane}>
-            <div id="geocoder"/>
-        </div>
+    return <Dashboard>
+        <Fragment>
+            <div className="flex-1 flex xl:overflow-hidden">
+                {/* Primary column */}
+                <section
+                    aria-labelledby="primary-heading"
+                    className="min-w-0 flex-1 h-full flex flex-col overflow-hidden lg:order-last"
+                >
+                    <h1 id="primary-heading" className="sr-only">
+                        Account
+                    </h1>
+                    {/* Your content */}
 
-        <div className={styles.rightPane}>
-            <div className={styles.mapPane} ref={mapContainerRef}/>
-        </div>
+                    <div className={styles.mapPane} ref={mapContainerRef}/>
 
-    </div>
+                </section>
+
+                {/* Secondary column (hidden on smaller screens) */}
+                <aside className="hidden lg:block lg:flex-shrink-0 lg:order-first">
+                    <div className="p-4 h-full relative flex flex-col w-96 border-r border-gray-200 bg-white">
+                        {/* Your content */}
+
+                        <p className="mb-6 text-4xl">Map</p>
+
+                        <div className=" relative rounded-md shadow-sm">
+                            <div
+                                className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true"/>
+                            </div>
+                            <input
+                                type="text"
+                                name="search"
+                                id="search"
+                                className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border border-gray-300 rounded-md"
+                                placeholder="you@example.com"
+                            />
+                        </div>
+
+                    </div>
+                </aside>
+            </div>
+        </Fragment>
+
+    </Dashboard>
+
 }

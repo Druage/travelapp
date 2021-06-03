@@ -10,7 +10,7 @@ export function HomePage() {
             <h1>Welcome to Travel App!</h1>
             <h3>My Trips</h3>
 
-            <Link to="/map">
+            <Link to="/dashboard">
                 <button className={styles.addTripButton}>Add Trip</button>
             </Link>
         </div>
