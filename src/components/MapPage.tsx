@@ -1,38 +1,46 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styles from "./MapPage.module.css"
-import {GeolocateControl, Map, NavigationControl} from "mapbox-gl";
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import mapbox from "mapbox-gl";
 
 export function MapPage() {
 
-    let map: any;
-    let geocoder: MapboxGeocoder
+    const mapContainerRef = useRef(null);
+    const [mapInstance, setMapInstance] = useState<mapbox.Map>();
+
     const accessToken = 'pk.eyJ1IjoibGVlbGF6YXJlY2t5IiwiYSI6ImNrbzI1eGhrNDA4Mmsyb29lYTgyZjR0bHkifQ.EQiqikkIYHnvWHKGzPSNCQ';
 
     useEffect(() => {
-        map = new Map({
-            container: 'map-pane',
+        // if ( map ) return;
+        // if ( geocoder ) return;
+        //
+
+        let map = new mapbox.Map({
+            container: mapContainerRef.current!,
             style: 'mapbox://styles/mapbox/outdoors-v11',
-            accessToken: accessToken
-        });
-
-        map.addControl(new GeolocateControl({
-            positionOptions: {
-                enableHighAccuracy: true
-            },
-            trackUserLocation: true
-        }));
-
-        map.addControl(new NavigationControl(), 'top-right');
-
-        geocoder = new MapboxGeocoder({
             accessToken: accessToken,
-            mapboxgl: map
         });
 
-        document.getElementById('geocoder')!.appendChild(geocoder.onAdd(map))
+        map.on('load', () => {
 
-    });
+            map.addControl(new mapbox.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            }));
+
+            map.addControl(new mapbox.NavigationControl(), 'top-right');
+            //
+            // console.log(tempMap);
+            //
+            // setMap(tempMap)
+            //
+
+            setMapInstance(map);
+        })
+
+
+    }, []);
 
     return <div className={styles.mapContainer}>
         <div className={styles.leftPane}>
@@ -40,10 +48,8 @@ export function MapPage() {
         </div>
 
         <div className={styles.rightPane}>
-            <div id="map-pane" className={styles.mapPane}/>
-            <button className={styles.addStopButton}>Add A Stop +</button>
+            <div className={styles.mapPane} ref={mapContainerRef}/>
         </div>
-
 
     </div>
 }

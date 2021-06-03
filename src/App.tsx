@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {HomePage} from "./components/HomePage";
 import {MapPage} from "./components/MapPage";
 
-
 function App() {
     return (
 
