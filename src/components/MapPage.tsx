@@ -66,7 +66,7 @@ export function MapPage() {
                     <div className="p-4 h-full relative flex flex-col w-96 border-r border-gray-200 bg-white">
                         {/* Your content */}
 
-                        <p className="mb-6 text-4xl">Map</p>
+                        <p className="mb-6 text-3xl">Map</p>
 
                         <div className=" relative rounded-md shadow-sm">
                             <div
@@ -78,7 +78,7 @@ export function MapPage() {
                                 name="search"
                                 id="search"
                                 className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border border-gray-300 rounded-md"
-                                placeholder="you@example.com"
+                                placeholder="Find a location"
                             />
                         </div>
 
