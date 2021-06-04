@@ -5,6 +5,7 @@ import {HomePage} from "./components/HomePage";
 import {MapPage} from "./components/MapPage";
 import {Dashboard} from "./components/Dashboard";
 import {FinancePage} from "./components/FinancePage";
+import {SignInPage} from "./components/pages/SignInPage";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
         <Router>
             <Switch>
                 <Route exact path="/" component={HomePage}/>
+                <Route exact path="/sign_in" component={SignInPage}/>
                 <Route exact path="/dashboard" component={Dashboard}>
                     <Redirect to="/dashboard/map"/>
                 </Route>
