@@ -2,10 +2,6 @@
   "name": "travelapp",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "v12.1.0",
-    "npm": "7.15.1"
-  },
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@expo-google-fonts/inter": "^0.1.0",
