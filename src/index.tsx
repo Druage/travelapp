@@ -9,8 +9,8 @@ import "@fontsource/inter";
 
 ReactDOM.render(
     <Auth0Provider
-        domain="dev-xpzc29na.us.auth0.com"
-        clientId="omQdHLHCxCIhE8ZbyRwaCzlFPfTo5Q9b"
+        domain={process.env.REACT_APP_AUTH0_DOMAIN || ""}
+        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || ""}
         redirectUri={window.location.origin}
     >
         <React.StrictMode>
