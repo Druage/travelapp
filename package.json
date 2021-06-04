@@ -2,10 +2,6 @@
   "name": "travelapp",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "v12.1.0",
-    "npm": "7.15.1"
-  },
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
     "@craco/craco": "^6.1.2",
