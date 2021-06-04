@@ -1,27 +1,14 @@
 import {Listbox, Transition} from "@headlessui/react";
 import {CheckIcon, PlusCircleIcon, SelectorIcon} from "@heroicons/react/outline";
 import React, {Fragment, useState} from "react";
-
-const people = [
-    { id: 1, name: 'Wade Cooper' },
-    { id: 2, name: 'Arlene Mccoy' },
-    { id: 3, name: 'Devon Webb' },
-    { id: 4, name: 'Tom Cook' },
-    { id: 5, name: 'Tanya Fox' },
-    { id: 6, name: 'Hellen Schmidt' },
-    { id: 7, name: 'Caroline Schultz' },
-    { id: 8, name: 'Mason Heaney' },
-    { id: 9, name: 'Claudie Smitham' },
-    { id: 10, name: 'Emil Schaefer' },
-]
-
-function classNames(...classes: any) {
-    return classes.filter(Boolean).join(' ')
-}
+import {GroupMember, groupMemberService} from "../services/groupMemberService";
+import {classNames} from "../utils/utils";
 
 export function AddExpensePane() {
 
-    const [selected, setSelected] = useState(people[3])
+    const groupMembers = groupMemberService.getGroupMembers()
+
+    const [selected, setSelected] = useState<GroupMember>(groupMembers[3])
 
     return (
         <div className="p-4 h-full relative flex flex-col w-96 border-r border-gray-200 bg-white gap-6">
@@ -93,21 +80,21 @@ export function AddExpensePane() {
                                         static
                                         className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                                     >
-                                        {people.map((person) => (
+                                        {groupMembers.map((member) => (
                                             <Listbox.Option
-                                                key={person.id}
+                                                key={member.id}
                                                 className={({ active }) =>
                                                     classNames(
                                                         active ? 'text-white bg-indigo-600' : 'text-gray-900',
                                                         'cursor-default select-none relative py-2 pl-8 pr-4'
                                                     )
                                                 }
-                                                value={person}
+                                                value={member}
                                             >
                                                 {({ selected, active }) => (
                                                     <>
                         <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                          {person.name}
+                          {member.name}
                         </span>
 
                                                         {selected ? (
